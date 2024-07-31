@@ -4,11 +4,15 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
+import kotlinx.coroutines.flow.Flow
 
 @Dao
-interface WorkoutsDao {
+interface WorkoutDao {
     @Query("SELECT * FROM Workout")
-    fun getAll() : List<Workout>
+    fun getAll() : Flow<List<Workout>>
+
+    @Query("SELECT * FROM Workout WHERE date = DATE('now')")
+    fun getToday() : Flow<List<Workout>>
 
     @Insert
     fun insert(workout: Workout)

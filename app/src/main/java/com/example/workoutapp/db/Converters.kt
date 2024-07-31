@@ -1,18 +1,20 @@
 package com.example.workoutapp.db
 
 import androidx.room.TypeConverter
+import java.time.LocalDate
+import java.time.LocalDateTime
 import java.util.Date
 
 class Converters {
 
     @TypeConverter
-    fun fromTimestamp(value: Long?): Date? {
-        return value?.let { Date(it) }
+    fun fromTimestamp(value: String?): LocalDate? {
+        return value?.let { LocalDate.parse(it)}
     }
 
     @TypeConverter
-    fun dateToTimestamp(date: Date?): Long? {
-        return date?.time?.toLong()
+    fun dateToTimestamp(date: LocalDate?): String? {
+        return date?.toString()
     }
 
 }

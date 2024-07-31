@@ -11,11 +11,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.workoutapp.db.WorkoutDatabase
 import com.example.workoutapp.ui.theme.WorkoutAppTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val db by lazy { WorkoutDatabase.getInstance(applicationContext) }
         enableEdgeToEdge()
         setContent {
             WorkoutAppTheme {
